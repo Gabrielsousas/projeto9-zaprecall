@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CardPergunta from "./components/CardPergunta";
+import deck from "./deck";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div onClick={() => mostrarPergunta()}>
+      {deck.map((mapItem, indice) => <CardPergunta question={mapItem.question} answer={mapItem.answer} indice={indice}/>)}
     </div>
   );
 }
 
-export default App;
+function mostrarPergunta(){
+  alert("Oiee")
+}
