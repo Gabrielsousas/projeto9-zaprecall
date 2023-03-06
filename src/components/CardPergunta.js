@@ -1,4 +1,3 @@
-import deck from "../deck";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -66,6 +65,7 @@ const StyleCardResposta = styled.div`
 `;
 
 const MainDiv = styled.div`
+
   & .div1 {
     display: ${({ showFirst }) => (showFirst ? "block" : "none")};
   }
