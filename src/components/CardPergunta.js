@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { GrPlay } from "react-icons/gr";
 import { TiArrowLoop } from "react-icons/ti";
+
 
 export default function CardPergunta(props) {
   const [showFirst, setShowFirst] = useState(true);
@@ -10,6 +10,8 @@ export default function CardPergunta(props) {
   const [fontColor, setFontColor] = useState("black");
   const [decoration, setDecoration] = useState("none");
   const [hasOnClick, setHasOnClick] = useState(true);
+  const [selectedIcon, setSelectedIcon] = useState("/projeto__zaprecall__recursos/assets/seta_play.png");
+  const [data, setData] = useState("play-btn")
 
   function mostrarPergunta() {
     setShowFirst((prevShowFirst) => !prevShowFirst);
@@ -27,6 +29,8 @@ export default function CardPergunta(props) {
     setHasOnClick(false);
     props.setPontos(props.pontos + 1);
     console.log(props.pontos);
+    setSelectedIcon("/projeto__zaprecall__recursos/assets/icone_erro.png")
+    setData("no-icon")
   }
   function clickQuaseNaoLembrei() {
     setShowFirst(true);
@@ -35,6 +39,8 @@ export default function CardPergunta(props) {
     setHasOnClick(false);
     props.setPontos(props.pontos + 1);
     console.log(props.pontos);
+    setSelectedIcon("/projeto__zaprecall__recursos/assets/icone_quase.png")
+    setData("partial-icon")
   }
   function clickZap() {
     setShowFirst(true);
@@ -43,10 +49,13 @@ export default function CardPergunta(props) {
     setHasOnClick(false);
     props.setPontos(props.pontos + 1);
     console.log(props.pontos);
+    console.log(selectedIcon);
+    setSelectedIcon("/projeto__zaprecall__recursos/assets/icone_certo.png")
+    setData("zap-icon")
   }
 
   return (
-    <MainDiv
+    <MainDiv data-test="flashcard"
       showFirst={showFirst}
       fontColor={fontColor}
       decoration={decoration}
@@ -55,8 +64,12 @@ export default function CardPergunta(props) {
     >
       <div className="div1">
         <StyleCardPergunta>
-          <p>pergunta {props.indice + 1}</p>
-          <GrPlay onClick={hasOnClick ? mostrarPergunta : undefined} />
+          <p data-test="flashcard-text">pergunta {props.indice + 1}</p>
+          {showFirst ? (
+            <img data-test={data} src={selectedIcon} onClick={hasOnClick ? mostrarPergunta : undefined} />
+          ) : (
+            selectedIcon
+          )}
         </StyleCardPergunta>
       </div>
 
@@ -64,23 +77,25 @@ export default function CardPergunta(props) {
         <StyleCardResposta>
           <div className="pergunta">
             <div>
-              <p>{props.question}</p>
-              <TiArrowLoop onClick={() => mostrarResposta()}></TiArrowLoop>
+              <p data-test="flashcard-text">{props.question}</p>
+              <TiArrowLoop data-test="turn-btn" onClick={() => mostrarResposta()}></TiArrowLoop>
             </div>
           </div>
           <div className="resposta">
-            <p>{props.answer}</p>
+            <p data-test="flashcard-text">{props.answer}</p>
             <div className="buttons">
-              <button onClick={() => clickNaoLembrei()} className="nao-lembrei">
+              <button data-test="no-btn" onClick={() => clickNaoLembrei()} className="nao-lembrei">
                 Não lembrei
               </button>
               <button
+              data-test="partial-btn"
                 onClick={() => clickQuaseNaoLembrei()}
                 className="quase-nao-lembrei"
               >
                 Quase não lembrei
               </button>
-              <button onClick={() => clickZap()} className="zap  ">
+              <button
+              data-test="zap-btn" onClick={() => clickZap()} className="zap  ">
                 Zap!
               </button>
             </div>

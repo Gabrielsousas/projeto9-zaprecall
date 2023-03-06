@@ -5,8 +5,8 @@ export default function Footer(props) {
   return (
     <StyledFooter>
       <StyledDiv>
-        <p>
-          {props.pontos} / {deck.length} CONCLUÍDOS
+        <p data-test="footer">
+          {props.pontos}/{deck.length} CONCLUÍDOS
         </p>
       </StyledDiv>
     </StyledFooter>
