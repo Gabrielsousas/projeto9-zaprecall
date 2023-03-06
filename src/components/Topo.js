@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "../projeto__zaprecall__recursos/assets/logo.png";
 import styled from "styled-components";
 
 export default function Topo() {
   return (
     <StyledDiv>
       <div>
-        <img src={logo}></img>
+        <img src={"/projeto__zaprecall__recursos/assets/logo.png"}></img>
         <p>ZapRecall</p>
       </div>
     </StyledDiv>
