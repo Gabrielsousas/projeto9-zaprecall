@@ -23,20 +23,26 @@ export default function CardPergunta(props) {
   function clickNaoLembrei() {
     setShowFirst(true);
     setFontColor("#ff3030");
-    setDecoration("line-through")
-    setHasOnClick(false)
+    setDecoration("line-through");
+    setHasOnClick(false);
+    props.setPontos(props.pontos + 1);
+    console.log(props.pontos);
   }
   function clickQuaseNaoLembrei() {
     setShowFirst(true);
     setFontColor("#ff922e");
-    setDecoration("line-through")
-    setHasOnClick(false)
+    setDecoration("line-through");
+    setHasOnClick(false);
+    props.setPontos(props.pontos + 1);
+    console.log(props.pontos);
   }
   function clickZap() {
     setShowFirst(true);
     setFontColor("#2fbe34");
-    setDecoration("line-through")
-    setHasOnClick(false)
+    setDecoration("line-through");
+    setHasOnClick(false);
+    props.setPontos(props.pontos + 1);
+    console.log(props.pontos);
   }
 
   return (
@@ -65,18 +71,18 @@ export default function CardPergunta(props) {
           <div className="resposta">
             <p>{props.answer}</p>
             <div className="buttons">
-              <buttom onClick={() => clickNaoLembrei()} className="nao-lembrei">
+              <button onClick={() => clickNaoLembrei()} className="nao-lembrei">
                 Não lembrei
-              </buttom>
-              <buttom
+              </button>
+              <button
                 onClick={() => clickQuaseNaoLembrei()}
                 className="quase-nao-lembrei"
               >
                 Quase não lembrei
-              </buttom>
-              <buttom onClick={() => clickZap()} className="zap  ">
+              </button>
+              <button onClick={() => clickZap()} className="zap  ">
                 Zap!
-              </buttom>
+              </button>
             </div>
           </div>
         </StyleCardResposta>
@@ -109,7 +115,7 @@ const StyleCardResposta = styled.div`
 const MainDiv = styled.div`
   & .div1 {
     display: ${({ showFirst }) => (showFirst ? "block" : "none")};
-    color: ${({ fontColor }) => fontColor}; 
+    color: ${({ fontColor }) => fontColor};
     text-decoration: ${({ decoration }) => decoration};
   }
 
